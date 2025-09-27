@@ -13,6 +13,7 @@ import AcercaDeNosotros from './components/pages/AcercaDeNosotros';
 import Dashboard from './components/Dashboard';
 import Cronograma from './components/cronograma/cronograma';
 import Reportes from './components/reportes/Reportes';
+import Tramites from './components/tramites/tramites';
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/clientes/editar" element={<EditarCliente />} />
           <Route path="/cronograma" element={<Cronograma />} />
           <Route path="/Reportes" element={<Reportes />} />
+          <Route path="/tramites" element={<Tramites />} />
         </Routes>
       </div>
     </Router>
