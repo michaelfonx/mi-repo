@@ -15,8 +15,6 @@ import Cronograma from './components/cronograma/cronograma';
 import Reportes from './components/reportes/Reportes';
 import Tramites from './components/tramites/tramites';
 
-
-
 import SideBar from './components/SideBar';
 import BarraCliente from './components/clientes/BarraCliente';
 import Cliente from './components/clientes/Cliente';
@@ -38,7 +36,8 @@ function App() {
           <Route path="/clientes/agregar" element={<AgregarCliente />} />
           <Route path="/clientes/editar" element={<EditarCliente />} />
           <Route path="/cronograma" element={<Cronograma />} />
-          <Route path="/Reportes" element={<Reportes />} />
+         <Route path="/reportes" element={<Reportes />} />
+
           <Route path="/tramites" element={<Tramites />} />
         </Routes>
       </div>
@@ -47,5 +46,6 @@ function App() {
 }
 
 export default App;
+
 
 

@@ -1,53 +1,63 @@
 import React, { useState } from "react";
 import { Table, Form, Button } from "react-bootstrap";
 
-function Reportes() {
-  const [eventos] = useState([
-    { id: 1, cliente: "Juan Pérez", titulo: "Misa", fecha: "2025-09-20" },
-    { id: 2, cliente: "María Gómez", titulo: "Sepelio", fecha: "2025-09-21" },
-    { id: 3, cliente: "Carlos Ramírez", titulo: "Velación", fecha: "2025-09-22" },
+export default function Reportes() {
+  const [filtro, setFiltro] = useState("");
+  const [reportes, setReportes] = useState([
+    { id: 1, cliente: "Juan Pérez", servicio: "Velación", fecha: "2025-09-20", estado: "Terminado" },
+    { id: 2, cliente: "María López", servicio: "Sepelio", fecha: "2025-09-25", estado: "Pendiente" },
+    { id: 3, cliente: "Carlos Gómez", servicio: "Misa", fecha: "2025-09-28", estado: "En proceso" },
   ]);
 
-  const [filtro, setFiltro] = useState("");
-
-  const eventosFiltrados = eventos.filter((e) =>
-    filtro == "" ? true : e.cliente.toLowerCase().includes(filtro.toLowerCase())
+  const reportesFiltrados = reportes.filter(
+    (r) =>
+      r.cliente.toLowerCase().includes(filtro.toLowerCase()) ||
+      r.servicio.toLowerCase().includes(filtro.toLowerCase()) ||
+      r.estado.toLowerCase().includes(filtro.toLowerCase())
   );
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Reportes</h2>
+      <h2>Reportes Funeraria</h2>
 
-      <div className="d-flex mb-3 gap-2">
-        <Form.Control
-          type="text"
-          placeholder="Buscar cliente"
-          value={filtro}
-          onChange={(e) => setFiltro(e.target.value)}
-        />
-        <Button onClick={() => setFiltro("")}>Limpiar</Button>
-      </div>
+      {/* Barra de búsqueda */}
+      <Form.Control
+        type="text"
+        placeholder="Buscar por cliente, servicio o estado..."
+        value={filtro}
+        onChange={(e) => setFiltro(e.target.value)}
+        className="mb-3"
+      />
 
+      {/* Tabla de reportes */}
       <Table striped bordered hover>
         <thead>
           <tr>
+            <th>#</th>
             <th>Cliente</th>
-            <th>Evento</th>
+            <th>Servicio</th>
             <th>Fecha</th>
+            <th>Estado</th>
           </tr>
         </thead>
         <tbody>
-          {eventosFiltrados.map((e) => (
-            <tr key={e.id}>
-              <td>{e.cliente}</td>
-              <td>{e.titulo}</td>
-              <td>{e.fecha}</td>
+          {reportesFiltrados.map((r) => (
+            <tr key={r.id}>
+              <td>{r.id}</td>
+              <td>{r.cliente}</td>
+              <td>{r.servicio}</td>
+              <td>{r.fecha}</td>
+              <td>{r.estado}</td>
             </tr>
           ))}
         </tbody>
       </Table>
+
+      {/* Botones básicos */}
+      <div className="d-flex gap-2">
+        <Button variant="success">Exportar Excel</Button>
+        <Button variant="danger">Exportar PDF</Button>
+      </div>
     </div>
   );
 }
-
-export default Reportes;
