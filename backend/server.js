@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const rolRoutes = require("./routes/rolRoutes");
+const rolUsuarioRoutes = require("./routes/rolUsuarioRoutes");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/roles", rolRoutes);
 app.use("/api/usuarios", usuarioRoutes);
+app.use('/api/rolusuario', rolUsuarioRoutes);
 
 // ruta base
 app.get("/", (req, res) => {
